@@ -1,0 +1,127 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Papers</h3>
+		<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+	</div>
+</div>
+
+<!-- Paper table -->
+<div class="row">
+	<div class="col s12">
+		<table>
+			<thead>
+				<tr>
+					<th>Reviewed</th>
+					<th>In Review</th>
+					<th>Pending Acceptance</th>
+					<th>No Reviewers Assigned</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>{{papers.reviewedCount}}</th>
+					<th>{{papers.inreviewCount}}</th>
+					<th>{{papers.pendingCount}}</th>
+					<th>{{papers.unassignedCount}}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Paper - reviewer table -->
+<div class="row">
+	<div class="col s12">
+		<button class="btn waves-effect waves-light" ng-click="assignPaper()">Assign<i class="material-icons right">assignment_ind</i></button>
+	</div>
+</div>
+
+<!-- {{papersSelected}} -->
+<<<<<<< Updated upstream
+=======
+{{reviewer.email}}
+>>>>>>> Stashed changes
+
+<div class="row">
+	<div class="col 12">
+		<table>
+			<thead>
+				<tr>
+					<th colspan="3" class="input-field">
+						<input id="filter" type="text" class="validate" ng-model="topicFilter">
+		        		<label for="filter">Filter</label>
+					</th>
+					<th colspan="2">
+						<label for="repeatSelect">Reviewers: </label>
+						<select name="repeatSelect" id="repeatSelect" ng-model="reviewer.selected" class="browser-default">
+							<option ng-repeat="reviewer in reviewers" value="{{reviewer.email}}">{{reviewer.email}}</option>
+						</select>
+					</th>
+					<th><input type="checkbox" id="check_idAll" ng-click="checkAll()" class="filled-in"><label for="check_idAll"></label></th>
+				</tr>
+				<tr>
+					<th>Paper</th>
+					<th>Authors</th>
+					<th>Topics</th>
+					<th>Reviewers</th>
+					<th>Status</th>
+					<th>Check</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="paper in papers.papers | filter:topicFilter">
+					<td>{{paper.title}}</td>
+					<td>
+						<ul>
+							<li ng-repeat="author in paper.authors">{{author.email}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li ng-repeat="tag in paper.tags">{{tag}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li ng-repeat="reviewer in paper.reviewers">{{reviewer}}</li>
+						</ul>
+					</td>
+					<td><a ng-href="#/dash/event/{{eventid}}/papers/{{paper.paper_id}}">{{paper.status}}</a></td>
+					<td><input type="checkbox" ng-if="paper.status != 'unassigned' || paper.status != 'pending'" class="filled-in" id="check_id{{paper.paper_id}}" name="selectedPapers[]" ng-checked="papersSelected.indexOf(paper.paper_id) > -1" ng-click="toggleSelectionPaper(paper.paper_id)"><label for="check_id{{paper.paper_id}}"></label></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col 12">
+		<table>
+			<thead>
+				<tr>
+					<th>Reviewed paper</th>
+					<th>Ratings</th>
+					<th>Best paper award</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="paper in papers.papers | filter:topicFilter">
+					<td>{{paper.title}}</td>
+					<td>
+						<!-- <div ng-repeat="star in getStar(rate) track by $index"> -->
+							<i class="material-icons" ng-repeat="star in getStar(rate) track by $index">star</i>
+						<!-- </div>
+						<div ng-repeat="star in getEmptyStar(rate) track by $index"> -->
+							<i class="material-icons" ng-repeat="star in getEmptyStar(rate) track by $index">star_border</i>
+						<!-- </div> -->
+					</td>
+					<td>
+						<button class="btn waves-effect orange">Best paper
+							<i class="material-icons right">thumb_up</i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

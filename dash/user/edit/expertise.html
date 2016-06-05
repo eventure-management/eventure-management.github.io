@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="container">
+		<h2 class="center-align">Edit your Expertise</h2>
+
+		<p ng-if="response">Info: {{response}}</p>
+
+		<div class="col s12">
+
+			<div class="row">
+				<div class="col s8 input-field">
+					<i class="material-icons prefix">label</i>
+					<input id="label" type="text" class="validate"  ng-model="expertise.name">
+					<label for="label">Expertise</label>
+				</div>
+				<div class="col s4">
+					<button class="btn waves-effect waves-light" ng-click="addExpertise()">Add
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12">
+					<div class="chip" ng-repeat="tag in tags">
+						{{tag}}
+						<i class="material-icons" ng-click="removeExpertise(tag)">close</i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

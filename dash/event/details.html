@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col s12">
+		<h3 class="center">Details</h3>
+	</div>
+</div>
+<div class="row">
+	<form class="col s12 center-align">
+		<div class="row">
+			<div class="left-align">
+				<i class="small material-icons">local_activity</i>
+				<span class="title">Event name</span>
+				<input type="text" class="validate" ng-model="details.name">
+			</div>
+		</div>
+		<div class="row">
+			<div class="left-align">
+				<i class="small material-icons">description</i>
+				<span class="title">Description</span>
+				<textarea id="textarea1" class="materialize-textarea" ng-model="details.description"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="left-align">
+				<div class="col s6">
+					<i class="small material-icons prefix">date_range</i>
+					<span class="title"> Event start date(YYYY-MM-DD hh:mm:ss): </span>
+					<input type="text" class="validate" ng-model="details.from_date">
+				</div>
+			</div>
+			<div class="left-align">
+				<div class="col s6">
+					<i class="small material-icons prefix">date_range</i>
+					<span class="title">Event end date(YYYY-MM-DD hh:mm:ss): </span>
+					<input type="text" class="validate" ng-model="details.to_date">
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="details.type=='conference'">
+			<div class="left-align">
+				<i class="small material-icons">date_range</i>
+				<span class="title"> Paper submission deadline: </span>
+				<input type="text" class="validate" ng-model="details.paper_deadline">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="right-align">
+					<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+					<button class="btn waves-effect waves-light" ng-click="updateEvent()">Create<i class="material-icons right">cloud</i></button>
+				</div>
+			</div>
+		</div>
+		{{response}}
+	</form>
+</div>

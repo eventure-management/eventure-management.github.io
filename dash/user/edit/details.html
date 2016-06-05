@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="container">
+		<h2 class="center-align">Change your Details</h2>
+
+		<p ng-if="response">Info: {{response}}</p>
+
+		<div class="col s12">
+			<div class="row">
+				<div class="input-field col s3">
+					<i class="material-icons prefix">face</i>
+					<input id="title" type="text" class="validate" ng-model="user.title">
+					<label for="title">Title</label>
+				</div>
+				<div class="input-field col s4">
+					<i class="material-icons prefix">account_circle</i>
+					<input id="first" type="text" class="validate" ng-model="user.first">
+					<label for="first">First Name</label>
+				</div>
+				<div class="input-field col s5">
+					<i class="material-icons prefix">account_circle</i>
+					<input id="last" type="tel" class="validate" ng-model="user.last">
+					<label for="last">Last Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">cake</i>
+					<input id="dob" type="text" class="validate"  ng-model="user.dob">
+					<label for="dob">Date of Birth</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">location_city</i>
+					<input id="street" type="text" class="validate"  ng-model="user.address">
+					<label for="street">Street address</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<i class="material-icons prefix">location_city</i>
+					<input id="city" type="text" class="validate" ng-model="user.city">
+					<label for="city">City</label>
+				</div>
+				<div class="input-field col s3">
+					<i class="material-icons prefix">location_city</i>
+					<input id="state" type="text" class="validate" ng-model="user.state">
+					<label for="state">State</label>
+				</div>
+				<div class="input-field col s4">
+					<i class="material-icons prefix">location_city</i>
+					<input id="country" type="text" class="validate" ng-model="user.country">
+					<label for="country">Country</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="left">
+					<button class="btn waves-effect wave-light red" ng-click="delete()">Delete Account
+						<i class="material-icons right">delete</i>
+					</button>
+				</div>
+				<div class="right">
+					<button class="btn waves-effect waves-light" ng-click="update()">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

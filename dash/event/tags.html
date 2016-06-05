@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="container">
+		<h2 class="center-align">Edit the Events Tags</h2>
+
+		<p ng-if="response">Info: {{response}}</p>
+
+		<div class="col s12">
+
+			<div class="row">
+				<div class="col s8 input-field">
+					<i class="material-icons prefix">label</i>
+					<input id="label" type="text" class="validate"  ng-model="tag.name">
+					<label for="label">Event Tag</label>
+				</div>
+				<div class="col s4">
+					<button class="btn waves-effect waves-light" ng-click="addTag()">Add
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12">
+					<div class="chip" ng-repeat="tag in tags">
+						{{tag}}
+						<i class="material-icons" ng-click="removeTag(tag)">close</i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

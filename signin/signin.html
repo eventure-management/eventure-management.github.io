@@ -1,0 +1,39 @@
+<div>
+
+	<div class="row">
+		<h2 class="center-align">Login</h2>
+
+		<div class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">email</i>
+					<input id="email" type="text" class="validate" ng-model="login.email" required>
+					<label for="email">Email Address</label>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">lock</i>
+					<input id="password" type="password" class="validate" ng-model="login.password" required>
+					<label for="password">Password</label>
+				</div>
+			</div>
+			{{response}}
+			<p class="response-text center" ng-repeat="resp in signinresp">
+				<i class="material-icons prefix icon-red">cancel</i>
+				{{resp}}
+			</p>
+
+			<div class="row">
+				<div class="right">
+					<button class="btn waves-effect waves-light" type="submit" ng-click="login()">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>

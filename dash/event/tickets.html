@@ -1,0 +1,102 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Tickets</h3>
+		<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+		<div class="row">
+			<div class="col s12">
+				<h4>Create new Ticket</h4>
+				<div class="row left-align">
+					<div class="col s6">
+						<i class="small material-icons">local_activity</i>
+						<span class="title">Session name</span>
+						<input type="text" class="validate" ng-model="newTicket.title">
+					</div>
+					<div class="col s6">
+						<i class="small material-icons">local_activity</i>
+						<span class="title">Ticket Name</span>
+						<input type="text" class="validate" ng-model="newTicket.name">
+					</div>
+				</div>
+				<div class="row left-align">
+					<div class="col s4">
+						<i class="small material-icons">event_seat</i>
+						<span class="title">Ticket Class</span>
+						<input type="text" class="validate" ng-model="newTicket.class">
+					</div>
+					<div class="col s4">
+						<i class="small material-icons">event_seat</i>
+						<span class="title">Ticket Type</span>
+						<input type="text" class="validate" ng-model="newTicket.type">
+					</div>
+					<div class="col s4">
+						<i class="small material-icons">attach_money</i>
+						<span class="title">Price</span>
+						<input type="text" class="validate" ng-model="newTicket.price">
+					</div>
+				</div>
+				<div class="row left-align">
+					<div class="col s12">
+						<i class="small material-icons">description</i>
+						<span class="title">Description</span>
+						<textarea id="textarea1" class="materialize-textarea" ng-model="newTicket.description"></textarea>
+					</div>
+				</div>
+				<div class="row left-align">
+					<div class="col s4">
+						<i class="small material-icons">flight_land</i>
+						<span class="title">Start Time(YYYY-MM-DD hh:mm:ss)</span>
+						<input type="text" class="validate" ng-model="newTicket.start_time">
+					</div>
+					<div class="col s4">
+						<i class="small material-icons">flight_takeoff</i>
+						<span class="title">End Time(YYYY-MM-DD hh:mm:ss)</span>
+						<input type="text" class="validate" ng-model="newTicket.end_time">
+					</div>
+					<div class="col s4">
+						<i class="small material-icons">shopping_cart</i>
+						<span class="title">Quantity</span>
+						<input type="text" class="validate" ng-model="newTicket.quantity">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 right-align">
+						<button class="btn waves-effect waves-light" ng-click="createTicket()">Create<i class="material-icons right">cloud</i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<h4>Current Tickets</h4>
+				<table>
+					<thead>
+						<tr>
+							<th>Session</th>
+							<th>Name</th>
+							<th>Class</th>
+							<th>Type</th>
+							<th>Price</th>
+							<th>Description</th>
+							<th>Start Time - End Time</th>
+							<th>Purchased / Total</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ticket in tickets">
+							<td>{{ticket.title}}</td>
+							<td>{{ticket.name}}</td>
+							<td>{{ticket.class}}</td>
+							<td>{{ticket.type}}</td>
+							<td>${{ticket.price}}</td>
+							<td>{{ticket.description}}</td>
+							<td>{{ticket.start_date}} - {{ticket.end_date}}</td>
+							<td>{{ticket.num_purchased}} / {{ticket.quantity}}</td>
+							<td><button class="btn waves-effect waves-light" ng-click="removeTicket(ticket.title,ticket.name,ticket.class,ticket.type)">Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

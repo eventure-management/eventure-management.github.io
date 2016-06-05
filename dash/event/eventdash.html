@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col s12">
+		<h3>{{currentEvent.name}}</h3>
+		<p>{{currentEvent.description}}</h3>
+		<div class="row">
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/details/">Basic Details</a></h4>
+			</div>
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/tickets/">Tickets</a></h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/sessions/">Sessions</a></h4>
+			</div>
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/rooms/">Rooms</a></h4>
+			</div>
+		</div>
+		<div class="row" ng-if="currentEvent.type=='conference'">
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/papers/">Papers</a></h4>
+			</div>
+			<div class="col s6">
+				<h4><a ng-href="#/dash/event/{{currentEvent.event_id}}/reviewers/">Reviewers</a></h4>
+			</div>
+		</div>
+	</div>
+</div>

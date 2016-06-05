@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input id="icon_prefix" type="text" class="validate" ng-model="search.field" required>
+        <label for="icon_prefix">Search for events, conferences</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12 center">
+        <button class="btn waves-effect waves-light" type="submit" ng-click="search()">Search
+        	<i class="material-icons right">search</i>
+        </button>
+    </div>
+</div>
+<div class="row">
+	<div class="col s12">
+		<p>{{response}}</p>
+	</div>
+</div>
+<div class="row">
+    <h4 class="center">Search results for "{{search.field}}"</h4>
+    <ul class="collection">
+        <li class="row collection-item avatar" ng-repeat="event in events">
+            <div class="col s3">
+                <img ng-src="{{image.poster}}" width="100%" height="120"/>
+            </div>
+            <div class="col s7">
+                <span class="title left-align"><h5>{{event.name}}</h5></span>
+                <p class="left-align">Tags:
+                    <div class="tag in event.tags">
+                        <a>{{tag.name}}</a>
+                    </div>
+                    <div ng-if=attending>
+                        <i class="material-icons prefix">done</i>You're attending this event
+                    </div>
+                </p>
+            </div>
+            <div class="col s2">
+                <button class="waves-effect waves-light btn" href="">View</button>
+            </div>
+        </li>
+    </ul>
+</div>

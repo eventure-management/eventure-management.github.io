@@ -1,0 +1,72 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+i.icon-blue {
+    color: mediumslateblue;
+}
+
+i.icon-turquoise {
+    color: darkturquoise;
+}
+
+i.icon-violet {
+    color: violet;
+}
+ i.icon-violetred {
+     color: mediumvioletred;
+ }
+
+ i.icon-green {
+     color: limegreen;
+ }
+
+ i.icon-sky {
+     color: deepskyblue;
+ }
+
+ i.icon-brown {
+     color: sandybrown;
+ }
+
+ i.icon-red {
+     color: red;
+ }
+
+ p.response-text {
+     color: red;
+
+ i.icon-indigo {
+     color: indigo;
+ }
+
+ .chip {
+	margin-top: 5px;
+ }

@@ -1,0 +1,41 @@
+<p>Welcome back {{user.username}}</p>
+
+<div class="row">
+	<div class="col s12">
+		<ul class="collection">
+			<li ng-if="Conversations.length == 0" class="collection-item">
+				<div class="row">
+					<div class="col s12">
+						You have no notifications
+					</div>
+				</div>
+			</li>
+			<li ng-repeat="Conversation in Conversations" ng-if="Conversation.sender_email != user.email" class="collection-item">
+				<div class="row">
+					<div class="col s3">
+						<strong>{{Conversation.date}}</strong>
+					</div>
+					<div class="col s9 right-align">
+						<div ng-if="Conversation.content.type == 'reviewerInvite'">
+							<button class="waves-effect waves-light btn" ng-click="acceptReviewer(Conversation.content.data.event_id, Conversation.conversation_id)">Accept</button>
+							<button class="waves-effect waves-light btn red" ng-click="declineReviewer(Conversation.content.data.event_id, Conversation.conversation_id)">Decline</button>
+						</div>
+						<div ng-if="Conversation.content.type == 'paperInvite'">
+							<button class="waves-effect waves-light btn" ng-click="acceptPaper(Conversation.content.data.paper_id, Conversation.content.data.event_id, Conversation.conversation_id)">Accept</button>
+							<button class="waves-effect waves-light btn red" ng-click="declinePaper(Conversation.content.data.paper_id, Conversation.content.data.event_id, Conversation.conversation_id)">Decline</button>
+						</div>
+						<div ng-if="Conversation.content.type == 'paperReview'">
+							<button class="waves-effect waves-light btn" ng-click="downloadPaper(Conversation.content.data.paper_id)">Download</button>
+							<button class="waves-effect waves-light btn red" ng-click="reviewPaper(Conversation.content.data.paper_id, Conversation.content.data.event_id, Conversation.conversation_id)">Submit Review</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						{{Conversation.content.message}}
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

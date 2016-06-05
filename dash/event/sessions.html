@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col s12">
+		<div class="row">
+			<div class="col s12">
+				<h3>Sessions</h3>
+				<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<table>
+					<thead>
+						<tr>
+							<th>Event Entry <abbr title="Is this a session for the event itself? (On). Is this a session for a presentation or something smaller? (Off)">(?)</abbr></th>
+							<th>Title</th>
+							<th>Start Time(YYYY-MM-DD hh:mm:ss)</th>
+							<th>End Time(YYYY-MM-DD hh:mm:ss)</th>
+							<th>Room Name</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><div class="switch"><label>Off<input type="checkbox" ng-model="newSession.is_event" ng-true-value="'true'" ng-false-value="'false'"><span class="lever"></span>On</label></div></td>
+							<td><input ng-model="newSession.title"></td>
+							<td><input ng-model="newSession.start_time"></td>
+							<td><input ng-model="newSession.end_time"></td>
+							<td><input ng-model="newSession.room_name"></td>
+							<td><button class="btn waves-effect waves-light" ng-click="addSession()">Add</button></td>
+						</tr>
+						<tr ng-repeat="session in sessions">
+							<td><i class="material-icons" ng-if="session.is_event == 'true'">thumbs_up</i><i class="material-icons" ng-if="session.is_event == 'false'">thumbs_down</i></td>
+							<td>{{session.title}}</td>
+							<td>{{session.start_time}}</td>
+							<td>{{session.end_time}}</td>
+							<td>{{session.room_name}}</td>
+							<td><button class="btn waves-effect waves-light" ng-click="deleteSession(session.title)">Delete</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

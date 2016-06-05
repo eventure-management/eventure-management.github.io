@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col s12">
+		<div class="file-field input-field">
+			<div class="btn">
+				<span>Poster</span>
+				<input type="file" fileread="poster.url">
+			</div>
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text">
+			</div>
+		</div>
+	</div>
+</div>
+{{posterresponse}}
+<div class="row">
+	<div class="col s12">
+		<div class="right-align">
+			<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+			<button class="btn waves-effect waves-light" ng-click="uploadPoster()">Upload<i class="material-icons right">cloud</i></button>
+		</div>
+	</div>
+</div>

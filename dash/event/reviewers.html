@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Add reviewers to event</h3>
+		<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+	</div>
+</div>
+<div class="row">
+	<div class="col s9 input-field">
+		<input id="email" type="text" class="validate" ng-model="search.input">
+		<label for="email">Enter Email to invite user to be a Reviewer</label>
+	</div>
+	<div class="col s3">
+		<button class="btn waves-effect waves-light" ng-click="askToReview()">Invite</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col s12">
+		<p>{{response}}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col s12">
+		<table>
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>Name</th>
+					<th>Tags</th>
+					<th>Status</th>
+					<td>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="reviewer in reviewers">
+					<td>{{reviewer.email}}</td>
+					<td>{{reviewer.title}} {{reviewer.first_name}} {{reviewer.last_name}}</td>
+					<td>
+						<ul>
+							<li ng-repeat="tag in user.tags">{{tag}}</li>
+						</ul>
+					</td>
+					<td>{{reviewer.role_name}}</td>
+					<td>
+						<!--<button class="btn waves-effect waves-light" ng-click="editReviewer()">Edit</button>-->
+						<button class="btn waves-effect waves-light" ng-click="removeReviewer(reviewer.email)">Remove</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

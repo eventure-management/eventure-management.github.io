@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+			<div class="col s8">
+				<h5>Ticket details</h5>
+			</div>
+			<div class="col s4">
+            	<a class="waves-effect waves-light btn left orange" ng-href="#/event/{{event.event_id}}">Back to event page</a>
+			</div>
+        </div>
+
+        <div class="row" ng-if="stage == 1">
+			<div class="col s12">
+				<table>
+				    <thead>
+				      <tr>
+				          <th data-field="name">Ticket name</th>
+						  <th data-field="description">Ticket description</th>
+				          <th data-field="price">Price</th>
+				          <th data-field="number">Number</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	<tr ng-repeat="ticket in tickets track by $index">
+					        <td>{{ticket.name}}</td>
+							<td>{{ticket.description}}</td>
+					        <td>${{ticket.price}}</td>
+					        <td>
+								<input ng-model="ticket.qty" type="number" name="points" min="0" max="100" step="1" value="0">
+							</td>
+						</tr>
+				    </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" ng-if="stage == 1">
+			<button class="waves-effect waves-light btn left orange" ng-click="next()">Next</button>
+		</div>
+
+		<div class="row" ng-if="stage == 2">
+			<div class="col s12">
+				<div class="row" ng-repeat="record in records track by $index">
+					<p>{{record.name}} (price: ${{record.price}})</p>
+					<!-- <div class="input-field col s12">
+						<i class="material-icons prefix">face</i>
+						<input id="icon_prefix" type="text" class="validate active">
+						<label for="icon_prefix">Attendee name</label>
+					</div> -->
+					<div class="input-field col s12">
+						<i class="material-icons prefix">email</i>
+						<input ng-model="emails[$index]" type="text"/>
+						<label for="icon_prefix">Email Address</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="stage == 2">
+			<h4>Total price: ${{total}} </h4>
+			<a class="waves-effect waves-light btn left orange"  ng-click="addSessionAttendee()">
+				Purchase
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<!--
+<div class="input-field col s12">
+	<i class="material-icons prefix">face</i>
+  <input id="icon_prefix" type="text" class="validate active">
+  <label for="icon_prefix">Attendee name</label>
+</div>
+<div class="input-field col s12">
+	<i class="material-icons prefix">email</i>
+  <input id="icon_prefix" type="text" class="validate active">
+  <label for="icon_prefix">Email Address</label>
+</div> -->

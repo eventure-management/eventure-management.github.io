@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>	  <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>		 <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>		 <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>My AngularJS App</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+	<link rel="stylesheet" href="app.css">
+	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.7/angular-materialize.min.js"></script>
+	<script src="../node_modules/js-sha256/src/sha256.js"></script>
+	<!-- Materialize -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body ng-controller="GlobalController" class="grey lighten-3">
+	<header>
+		<nav class="grey-text cyan lighten-3">
+			<div class="nav-wrapper container">
+				<div class="col s12">
+				<a href="#/" class="brand-logo"><span class="offset-m1">Eventure</span></a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="#/search"><i class="material-icons">search</i></a></li>
+						<li ng-if="user===null"><a href="#/signup">Sign Up</a></li>
+						<li ng-if="user===null"><a href="#/login">Log In</a></li>
+						<li ng-if="user!==null"><a href="#/dash">My Account</a></li>
+						<li ng-if="user!==null"><a href="#/" ng-click="logout()">Log Out</a></li>
+						<li><a href="/contact">Help</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main ng-if="dashboard == 'user'" class="container">
+		<div class="row">
+			<div class="col s3">
+				<div class="waves-light cyan lighten-4">
+					<ul class="collection with-header">
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">dashboard</i>
+							<a href="#/dash/">My Dashboard</a>
+						</li>
+
+						<li class="collection-header"><h4>User</h4></li>
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">face</i>
+							<a href="#/dash/edit/details">My Details</a>
+						</li>
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">lock</i>
+							<a href="#/dash/edit/password">Password</a>
+						</li>
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">label</i>
+							<a href="#/dash/edit/expertise">Expertise</a>
+						</li>
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">description</i>
+							<a href="#/dash/papers">My Papers</a>
+						</li>
+
+						<li class="collection-header"><h4>Events</h4></li>
+						<li class="collection-item">
+							<i class="small material-icons left icon-sky">local_activity</i>
+							<a href="#/dash/myevents/attending">Events Attending</a>
+						</li>
+						<li class="collection-item" ng-if="user.upgraded == '1'">
+							<i class="small material-icons left icon-sky">assignment</i>
+							<a href="#/dash/myevents/manage">Events Managing</a>
+						</li>
+						<li class="collection-item" ng-if="user.upgraded == '1'">
+							<i class="small material-icons left icon-sky">create</i>
+							<a href="#/dash/event/create">Create Event</a>
+						</li>
+
+						<li class="collection-header" ng-if="user.upgraded != '1'"><h4>Eventure</h4></li>
+						<li class="collection-item" ng-if="user.upgraded != '1'">
+							<i class="small material-icons icon-turquoise">flight_takeoff</i>
+							<a href="#/dash/upgrade">Upgrade Account</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col s9">
+				<div ng-view></div>
+			</div>
+		</div>
+	</main>
+
+	<main ng-if="dashboard == 'event'" class="container">
+		<div class="row">
+			<div class="col s3">
+				<div class="waves-light cyan lighten-4">
+					<ul class="collection">
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/details">Basic Details</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/poster">Poster</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/tags">Tags</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/billingInfo">Billing Info</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/rooms">Rooms</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/sessions">Sessions</a>
+						</li>
+						<li class="collection-item">
+							<a ng-href="#/dash/event/{{event_id}}/tickets">Tickets</a>
+						</li>
+						<li class="collection-item" ng-if="currentEvent.type == 'conference'">
+							<a ng-href="#/dash/event/{{event_id}}/reviewers">Reviewers</a>
+						</li>
+						<li class="collection-item" ng-if="currentEvent.type == 'conference'">
+							<a ng-href="#/dash/event/{{event_id}}/papers">Papers</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col s9">
+				<div ng-view></div>
+			</div>
+		</div>
+	</main>
+
+	<main ng-if="dashboard == 'false'" class="container">
+		<div class="row">
+			<div class="col s12">
+				<div ng-view></div>
+			</div>
+		</div>
+	</main>
+
+	<footer class="page-footer cyan lighten-3">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<img src="/app/images/logo.png" alt="uow logo" style="width:150px;height:100px;">
+					<p class="grey-text text-lighten-4">Our website cooperates with university of Wollongong, we want let more people enjoy event or conference!</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="#!">About us</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Feedback</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Membership</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Site Map</a></li>
+						<li><a class="grey-text text-lighten-3" href="#!">Connect with us</a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+
+			<div class="footer-copyright">
+				<div class="container">2016 CSCI321 Project
+				<div class="row right">
+				<a href="https://www.facebook.com" class="facebook" title="Facebook"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M19,4V7H17A1,1 0 0,0 16,8V10H19V13H16V20H13V13H11V10H13V7.5C13,5.56 14.57,4 16.5,4M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg></a>
+				<a href="https://www.facebook.com" class="google" title="Facebook"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M20,2A2,2 0 0,1 22,4V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V4C2,2.89 2.9,2 4,2H20M20,12H18V10H17V12H15V13H17V15H18V13H20V12M9,11.29V13H11.86C11.71,13.71 11,15.14 9,15.14C7.29,15.14 5.93,13.71 5.93,12C5.93,10.29 7.29,8.86 9,8.86C10,8.86 10.64,9.29 11,9.64L12.36,8.36C11.5,7.5 10.36,7 9,7C6.21,7 4,9.21 4,12C4,14.79 6.21,17 9,17C11.86,17 13.79,15 13.79,12.14C13.79,11.79 13.79,11.57 13.71,11.29H9Z" /></svg></a>
+				<a href="https://www.facebook.com" class="youtube" title="Facebook"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M10,16.5V7.5L16,12M20,4.4C19.4,4.2 15.7,4 12,4C8.3,4 4.6,4.19 4,4.38C2.44,4.9 2,8.4 2,12C2,15.59 2.44,19.1 4,19.61C4.6,19.81 8.3,20 12,20C15.7,20 19.4,19.81 20,19.61C21.56,19.1 22,15.59 22,12C22,8.4 21.56,4.91 20,4.4Z" /></svg></a>
+				<a href="https://www.facebook.com" class="instagram" title="Facebook"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M20,6.5A0.5,0.5 0 0,1 19.5,7H17.5A0.5,0.5 0 0,1 17,6.5V4.5A0.5,0.5 0 0,1 17.5,4H19.5A0.5,0.5 0 0,1 20,4.5M4.5,20A0.5,0.5 0 0,1 4,19.5V11H6.09C6.03,11.32 6,11.66 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12C18,11.66 17.96,11.32 17.91,11H20V19.5A0.5,0.5 0 0,1 19.5,20M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg></a>
+				<a href="https://www.facebook.com" class="twitter" title="Facebook"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M17.71,9.33C17.64,13.95 14.69,17.11 10.28,17.31C8.46,17.39 7.15,16.81 6,16.08C7.34,16.29 9,15.76 9.9,15C8.58,14.86 7.81,14.19 7.44,13.12C7.82,13.18 8.22,13.16 8.58,13.09C7.39,12.69 6.54,11.95 6.5,10.41C6.83,10.57 7.18,10.71 7.64,10.74C6.75,10.23 6.1,8.38 6.85,7.16C8.17,8.61 9.76,9.79 12.37,9.95C11.71,7.15 15.42,5.63 16.97,7.5C17.63,7.38 18.16,7.14 18.68,6.86C18.47,7.5 18.06,7.97 17.56,8.33C18.1,8.26 18.59,8.13 19,7.92C18.75,8.45 18.19,8.93 17.71,9.33M20,2H4A2,2 0 0,0 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg></a>
+			</div>
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- In production use:
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+	-->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+
+	<script src="app.js"></script>
+	<script src="main/main.js"></script>
+	<script src="dash/dash.js"></script>
+	<script src="signup/signup.js"></script>
+	<script src="search/search.js"></script>
+	<script src="dash/user/upgrade.js"></script>
+	<script src="dash/user/edit/edit.js"></script>
+	<script src="dash/user/managing.js"></script>
+	<script src="dash/user/attlist.js"></script>
+	<script src="dash/user/papers.js"></script>
+	<script src="dash/user/papers/submit.js"></script>
+	<script src="dash/user/papers/manage.js"></script>
+	<script src="dash/event/createevent.js"></script>
+	<script src="dash/event/papers.js"></script>
+	<script src="dash/event/paper.js"></script>
+	<script src="dash/event/reviewers.js"></script>
+	<script src="dash/event/dash.js"></script>
+	<script src="event/eventpage.js"></script>
+	<script src="event/buyticket.js"></script>
+	<script src="review/paper.js"></script>
+
+	<script src="components/version/version.js"></script>
+	<script src="components/version/version-directive.js"></script>
+	<script src="components/version/interpolate-filter.js"></script>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>

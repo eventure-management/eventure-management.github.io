@@ -1,0 +1,94 @@
+<div class="row">
+	<div class="container">
+		<h2 class="center-align">Sign up as a member of Conf+</h2>
+
+		<p class="response-text center" ng-repeat="resp in signupresp">
+			<i class="material-icons prefix icon-red">cancel</i>
+			{{resp}}
+		</p>
+
+		<div class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">email</i>
+					<input id="icon_prefix" type="text" class="validate" ng-model="userdata.email">
+					<label for="icon_prefix">Email Address</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">account_circle</i>
+					<input id="icon_prefix" type="text" class="validate" ng-model="userdata.username">
+					<label for="icon_prefix">Username</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">lock</i>
+					<input id="icon_prefix" type="password" class="validate" ng-model="userdata.password">
+					<label for="icon_prefix">Password</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">lock</i>
+					<input id="icon_prefix" type="password" class="validate"  ng-model="userdata.confirmpass">
+					<label for="icon_prefix">Confirm password</label>
+				</div>
+			</div>
+			<div class="right">
+				<button class="btn waves-effect waves-light" ng-click="signup()">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--
+<div class="row">
+	<div class="input-field col s2">
+		<i class="material-icons prefix">face</i>
+		<input id="icon_prefix" type="text" class="validate" ng-model="userdata.title">
+		<label for="icon_prefix">Title</label>
+	</div>
+	<div class="input-field col s5">
+		<i class="material-icons prefix">account_circle</i>
+		<input id="icon_prefix" type="text" class="validate" ng-model="userdata.first">
+		<label for="icon_prefix">First Name</label>
+	</div>
+	<div class="input-field col s5">
+		<i class="material-icons prefix">account_circle</i>
+		<input id="icon_telephone" type="tel" class="validate" ng-model="userdata.last">
+		<label for="icon_telephone">Last Name</label>
+	</div>
+</div>
+<div class="row">
+	<div class="input-field col s12">
+		<i class="material-icons prefix">cake</i>
+		<input id="icon_prefix" type="date" class="datepicker" ng-model="userdata.dob">
+	</div>
+</div>
+<div class="row">
+	<div class="input-field col s12">
+		<i class="material-icons prefix">location_city</i>
+		<input id="icon_prefix" type="text" class="validate"  ng-model="userdata.address">
+		<label for="icon_prefix">Street address</label>
+	</div>
+</div>
+<div class="row">
+	<div class="input-field col s5">
+		<i class="material-icons prefix">location_city</i>
+		<input id="icon_prefix" type="text" class="validate" ng-model="userdata.city">
+		<label for="icon_prefix">City</label>
+	</div>
+	<div class="input-field col s3">
+		<i class="material-icons prefix">location_city</i>
+		<input id="icon_prefix" type="text" class="validate" ng-model="userdata.state">
+		<label for="icon_prefix">State</label>
+	</div>
+	<div class="input-field col s4">
+		<i class="material-icons prefix">location_city</i>
+		<input id="icon_prefix" type="text" class="validate" ng-model="userdata.country">
+		<label for="icon_prefix">Country</label>
+	</div>
+</div>
+-->

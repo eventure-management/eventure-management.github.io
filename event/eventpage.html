@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col s12">
+		<div class="row">
+			<div class="col s12 center">
+				<img ng-src="{{event.poster_data_url}}">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<h3>{{event.name}}</h3>
+				<a ng-href="#/event/{{event.event_id}}/buyticket">
+					<button class="btn waves-effect waves-light">Buy Ticket</button>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				<h6>Start Date - End Date</h6>
+			</div>
+			<div class="col s10">
+				<p>{{event.from_date}} - {{event.to_date}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				<h6>Location</h6>
+			</div>
+			<div class="col s10">
+				<p>{{event.venue.street}} {{event.venue.city}}, {{event.venue.state}}, {{event.venue.country}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				<h6>Description</h6>
+			</div>
+			<div class="col s10">
+				<p>{{event.description}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s2">
+				<h6>Tags</h6>
+			</div>
+			<div class="col s10">
+				<div ng-repeat="tag in tags" class="chip">{{tag}}</div>
+			</div>
+		</div>
+	</div>
+</div>

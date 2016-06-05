@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Event Attendee</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="attendee in attendees">
+					<td>{{attendee.title}}</td>
+					<td>{{attendee.first_name}} {{attendee.last_name}}</td>
+					<td>{{attendee.email}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn waves-effect waves-light" type="submit" onClick="window.print()">Print attendee list
+			<i class="material-icons left">print</i>
+		</button>
+	</div>
+</div>

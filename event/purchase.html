@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col s12">
+		<div class="container">
+			<h3>Ticket purchase </h3>
+			<div class="card center">
+				<br>
+				<h5>Tickets for {{event.name}}</h5>
+				<p>Number of tickets: {{attendee.quantity}}</p>
+				<p>Total amount: ${{price.total}}</p>
+				<br>
+			</div>
+			<div class="right">
+                <a class="waves-effect waves-light btn left orange" ng-href="#/event/{{event.event_id}}/purchase">
+                    Checkout with paypal
+                </a>
+            </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Rooms</h3>
+		<a ng-href="#/dash/event/{{currentEvent.event_id}}"><button class="btn waves-effect waves-light">Back<i class="material-icons right">arrow_back</i></button></a>
+		<p>{{response}}</p>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Capacity</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input ng-model="newRoom.name"></td>
+					<td><input ng-model="newRoom.type"></td>
+					<td><input ng-model="newRoom.capacity"></td>
+					<td><button class="btn waves-effect waves-light" ng-click="addRoom()">Add</button></td>
+				</tr>
+				<tr ng-repeat="room in rooms">
+					<td>{{room.name}}</td>
+					<td>{{room.type}}</td>
+					<td>{{room.capacity}}</td>
+					<td><button class="btn waves-effect waves-light" ng-click="deleteRoom(room.name)">Delete</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col s12">
+		<h4>Venue map</h4>
+		<img ng-src="{{birdseye_url}}" width="600"><br>
+		<a ng-href="#/dash/event/{{event_id}}/birdseye">Upload venue map</a>
+		{{response}}
+	</div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Upload New Paper</h3>
+		<div class="row">
+        	<div class="input-field col s6">
+    			<i class="material-icons prefix">title</i>
+            	<input id="title" type="text" class="validate" ng-model="paper.title">
+            	<label for="title">Paper Title</label>
+        	</div>
+        	<div class="input-field col s6">
+            	<i class="material-icons prefix">date_range</i>
+            	<input id="date" type="text" class="validate" ng-model="paper.publish_date">
+            	<label for="date">Published Date(YYYY-MM-DD hh:mm:ss)</label>
+        	</div>
+        </div>
+		<div class="row">
+			<div class="col s12">
+			    <div class="file-field input-field">
+			        <div class="btn">
+			        	<span>File</span>
+			        	<input type="file" fileread="paper.paper_data_url">
+			        </div>
+			        <div class="file-path-wrapper">
+			        	<input class="file-path validate" type="text">
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<button class="btn waves-effect waves-light" ng-click="submit()">Submit Paper</button>
+			</div>
+		</div>
+		{{response}}
+	</div>
+</div>

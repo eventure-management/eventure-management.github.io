@@ -1,0 +1,93 @@
+<h3>Paper Details</h3>
+
+<!--
+Statuses are
+
+unassigned = no reviewers
+pending = reviewers but have not been sent paper for reviewing
+inreview = reviewers have been send paper for reviewing does not yet have all responses
+reviewed = reviewers have been sent paper all have reviewed paper
+accepted = after reviewing the reviews paper has been accepted for the conference
+rejected = after reviewing the reviews paper has been declined for the conference
+-->
+
+<div class="row" ng-if="paper.status=='pending'">
+	<div class="col s12">
+		<button class="btn waves-effect waves-light" ng-click="distributePapers()">Send out Papers for Review</button>
+	</div>
+</div>
+
+<div class="row" ng-if="paper.status=='reviewed'">
+	<div class="col s3">
+		<button class="btn waves-effect waves-light" ng-click="">Accept</button>
+	</div>
+	<div class="col s3">
+		<button class="btn waves-effect waves-light red" ng-click="">Reject</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s12">
+
+		<h4>Reviews</h4>
+		<div class="row">
+			<div class="col s12">
+				<table>
+					<thead>
+						<tr>
+							<th>Reviewer</th>
+							<th>Rating</th>
+							<th>Full Review</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="reviewer in paper.reviewers">
+							<td>{{reviewer.email}}</td>
+							<td>{{reviewer.rate}}</td>
+							<td>{{reviewer.comment}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<h4>Conversations</h4>
+		<div class="row">
+			<div class="col s12">
+				<table>
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Content</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="conversation in conversations">
+							<td>{{conversation.sender_email}}</td>
+							<td>{{conversation.content.message}}</td>
+						</tr>
+						<tr ng-if="conversations.length == 0">
+							<td colspan="2">No Conversations Yet</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="paper.staus=='reviewed'">
+	<div class="col s12">
+		View Reviews
+		View Discussion between Reviewers and Authors
+		Accept or Reject button
+	</div>
+</div>
+
+<div class="row" ng-if="paper.status=='accepted' || paper.status=='rejected'">
+	<div class="col s12">
+		View reviews
+		View Discussion between Reviewers and Authors
+		View end decision
+	</div>
+</div>

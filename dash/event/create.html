@@ -1,0 +1,173 @@
+<div class="row">
+	<div class="col s12">
+		<h3 class="center">Create Event</h3>
+	</div>
+</div>
+<div class="row">
+	<form class="col s12 center-align">
+		<div class="row">
+			<div class="input-field col s6">
+				<i class="small material-icons prefix">local_activity</i>
+	        	<input id="event_name" type="text" class="validate" ng-model="event.name">
+	        	<label for="event_name">Event Name</label>
+	        </div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<i class="small material-icons prefix">description</i>
+	        	<textarea id="textarea1" class="materialize-textarea" ng-model="event.description"></textarea>
+	        	<label for="textarea1">Event Description</label>
+	        </div>
+		</div>
+		<div class="row">
+			<div class="left-align">
+				<div class="input-field col s6">
+					<i class="small material-icons prefix">date_range</i>
+					<input type="text" id="from_date" class="validate" ng-model="event.from_date">
+					<label for="from_date">Start Time(YYYY-MM-DD hh:mm:ss)</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="small material-icons prefix">date_range</i>
+					<input type="text" id="to_date" class="validate" ng-model="event.to_date">
+					<label for="to_date">End Time(YYYY-MM-DD hh:mm:ss)</label>
+				</div>
+			</div>
+		</div>
+
+		<!-- venue -->
+		<div class="row">
+			<div class="col s12">
+				<div class="left-align">
+					<i class="small material-icons">place</i>
+					<span class='title'>Venue</span>
+				</div>
+				<p>
+					<input name="group1" type="radio" id="new" ng-model="venue.neworold" value="new" />
+					<label for="new">Create New Venue</label>
+				</p>
+				<p>
+					<input name="group1" type="radio" id="old" ng-model="venue.neworold" value="old" />
+					<label for="old">Use Preexisting Venue</label>
+				</p>
+			</div>
+		</div>
+		<div ng-if="venue.neworold == 'new'" class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="input-field col s8">
+						<input type="text" id="venue_name" class="validate" ng-model="venue.name">
+						<label for="venue_name">Name</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="venue_type" class="validate" ng-model="venue.type">
+						<label for="venue_type">Type</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input type="text" id="venue_street" class="validate" ng-model="venue.street">
+						<label for="venue_street">Street</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="text" id="venue_city" class="validate" ng-model="venue.city">
+						<label for="venue_city">City</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="venue_state" class="validate" ng-model="venue.state">
+						<label for="venue_state">State</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="venue_country" class="validate" ng-model="venue.country">
+						<label for="venue_country">Country</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<input type="text" id="venue_longitude" class="validate" ng-model="venue.longitude">
+						<label for="venue_longitude">Longitude</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" id="venue_latitude" class="validate" ng-model="venue.latitude">
+						<label for="venue_latitude">Latitude</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-if="venue.neworold == 'old'" class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="text" id="venue_country" class="validate" ng-model="venue.country" ng-blur="getVenues()">
+						<label for="venue_country">Country</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="venue_state" class="validate" ng-model="venue.state" ng-blur="getVenues()">
+						<label for="venue_state">State</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="venue_city" class="validate" ng-model="venue.city" ng-blur="getVenues()">
+						<label for="venue_city">City</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<select ng-model="event.venue_id" class="browser-default">
+							<option ng-repeat="venue in venues track by $index" value="{{venue[$index].venue_id}}">{{venue[$index].name}}, {{venue[$index].street}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end venue -->
+		<div class="row">
+			<div class="col s12">
+				<div class="left-align">
+					<i class="small material-icons">local_bar</i>
+					<span class="title">Event type</span>
+				</div>
+				<p>
+					<input name="group2" type="radio" id="event" ng-model="event.type" value="event" />
+					<label for="event">Event</label>
+				</p>
+				<p>
+					<input name="group2" type="radio" id="conference" ng-model="event.type" value="conference" />
+					<label for="conference">Conference</label>
+				</p>
+			</div>
+		</div>
+		<div class="row" ng-if="event.type=='conference'">
+			<div class="col s12 left-align">
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="small material-icons prefix">date_range</i>
+						<input type="text" id="event_deadline" ng-model="event.paper_deadline">
+						<label for="event_deadline">Paper Deadline</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 left-align">
+				<div class="left-align">
+					<i class="small material-icons">fingerprint</i>
+					<span class="title">Privacy</span>
+				</div>
+				<p>
+					<input name="group3" type="radio" id="private" ng-model="event.privacy" value="private" />
+					<label for="private">Private</label>
+				</p>
+				<p>
+					<input name="group3" type="radio" id="public" ng-model="event.privacy" value="public" />
+					<label for="public">Public</label>
+				</p>
+			</div>
+		</div>
+
+		<div class="right-align">
+			<button class="btn waves-effect waves-light" ng-click="create()">Create<i class="material-icons right">cloud</i></button>
+		</div>
+		{{response}}
+	</form>
+</div>

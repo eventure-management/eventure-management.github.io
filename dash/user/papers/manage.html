@@ -1,0 +1,158 @@
+<div class="row">
+	<div class="col s12">
+		<h3>Manage Details for Paper</h3>
+		<div class="row">
+			<div class="col s4">
+				<button class="btn waves-effect waves-light" ng-click="action.type = 'author'">Add / Remove Authors</button>
+			</div>
+			<div class="col s4">
+				<button class="btn waves-effect waves-light" ng-click="action.type = 'edit'">Edit Details</button>
+			</div>
+			<div class="col s4">
+				<button class="btn waves-effect waves-light" ng-click="action.type = 'tags'">Add / Remove Tags</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s4">
+				<button class="btn waves-effect waves-light" ng-click="action.type = 'event'">Submit to Event</button>
+			</div>
+			<div class="col s4">
+				<button class="btn waves-effect waves-light" ng-click="delete()">Delete Paper</button>
+			</div>
+			<div class="col s4">
+				<button class="btn waves-effect waves-light"><a download ng-href="{{trustedURL(paper.paper_data_url)}}" target="_blank">Download Paper</a></button>
+			</div>
+		</div>
+
+		<div ng-if="response.length != 0" class="row">
+			<div class="col s12">
+				<ul>
+					<li ng-repeat="rep in response">
+						<i class="material-icons">{{rep.icon}}</i>
+						{{rep.content}}
+						<i class="material-icons">close</i>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div ng-if="action.type == 'edit'" class="row">
+			<div class="col s12">
+				<div class="row">
+		        	<div class="input-field col s6">
+		    			<i class="material-icons prefix">title</i>
+		            	<input id="title" type="text" class="validate" ng-model="paper.title">
+		            	<label for="title">Paper Title</label>
+		        	</div>
+		        	<div class="input-field col s6">
+		            	<i class="material-icons prefix">date_range</i>
+		            	<input id="date" type="text" class="validate" ng-model="paper.publish_date">
+		            	<label for="date">Published Date</label>
+		        	</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<div class="file-field input-field">
+							<div class="btn">
+								<span>Upload Revision</span>
+								<input type="file" fileread="paper.paper_data_url">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<button class="btn waves-effect waves-light" ng-click="edit()">Save Changes</button>
+					</div>
+				</div>
+			</div>
+        </div>
+
+		<div ng-if="action.type == 'author'" class="row">
+			<div class="col s12">
+				<table>
+					<thead>
+						<tr>
+							<th>Author Email</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="author in authors">
+							<td>{{author}}</td>
+							<td><button class="btn wave-effect waves-light" ng-click="remove(author)">Remove</button></td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" class="validate" ng-model="author.email">
+							</td>
+							<td>
+								<button class="btn waves-effect waves-light" ng-click="add()">Add Author</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div ng-if="action.type == 'tag'" class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="col s8">
+						<i class="material-icons prefix">label_outline</i>
+						<input id="tag" type="text" class="validate" ng-model="tag.name">
+						<label for="tag">New Tag</label>
+					</div>
+					<div class="col s4">
+						<button class="btn waves-effect waves-light" ng-click="addTag()">Add Author</button>
+					</div>
+				</div>
+				<div ng-repeat="tag in tags" class="chip">
+					{{tag.name}}
+					<i class="material-icons" ng-click="closeTag(tag.name)">close</i>
+				</div>
+			</div>
+		</div>
+
+		<div ng-if="action.type == 'event'" class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="col s8">
+						<i class="material-icon prefix">search</i>
+						<input id="search" type="text" class="validate" ng-model="searchEvent.query">
+						<label for="search">Search an Event</label>
+					</div>
+					<div class="col s4">
+						<button class="btn waves-effect waves-light" ng-click="searchEvent()">Search</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Venue</th>
+									<th>Time</th>
+									<th>Submit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="event in events">
+									<td>{{event.name}}</td>
+									<td>{{event.venue.city}}, {{event.venue.country}}</td>
+									<td>{{event.from_date}} - {{event.to_date}}</td>
+									<td><button class="btn waves-effect waves-light" ng-click="submitToEvent(event.event_id)">Submit</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
